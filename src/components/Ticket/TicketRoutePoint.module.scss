@@ -1,0 +1,23 @@
+.routepoint {
+  display: flex;
+  flex-direction: column;
+}
+.time {
+  margin-bottom: 3px;
+  line-height: 1.2;
+  font-size: 2rem;
+  color: #000000b3;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #000000b3;
+}
+
+.date {
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: #c1c1c1;
+}
