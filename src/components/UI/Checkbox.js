@@ -1,25 +1,23 @@
-import { useState } from 'react';
 import classes from './Checkbox.module.scss';
 
 const Checkbox = (props) => {
-  const [isChecked, setIsChecked] = useState(props.checked);
+  const checked = props.checked;
 
   const toggleChange = () => {
-    setIsChecked(!isChecked);
-    props.handleCheckboxChange(props.id);
+    props.handleCheckboxChange(props.id, !checked);
   };
 
   return (
     <label className={classes.checkboxLabel}>
       <input
         type='checkbox'
-        checked={isChecked}
+        checked={checked}
         className={classes.hiddenCheckbox}
         onChange={toggleChange}
       />
       <svg
         className={`${classes.checkbox} + ${
-          isChecked ? classes.checkboxActive : ''
+          checked ? classes.checkboxActive : ''
         }`}
         width='19'
         height='19'

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Checkbox from '../UI/Checkbox';
 import classes from './TransfersWidget.module.scss';
 const transferOptions = [
@@ -24,35 +24,55 @@ const transferOptions = [
   },
 ];
 const TransfersWidget = (props) => {
-  const [selectedTransfers, setSelectedTransfers] = useState(new Set(['all']));
+  const [isCheckAll, setIsCheckAll] = useState(true);
+  const [selected, setSelected] = useState([]);
+  const [optionsList, setOptionsList] = useState([]);
 
-  const handleFilterToggled = (id) => {
-    if (selectedTransfers.has(id)) {
-      setSelectedTransfers(
-        (selectedTransfers) =>
-          new Set([...selectedTransfers].filter((filter) => filter !== id))
-      );
-    } else {
-      setSelectedTransfers((selectedTransfers) =>
-        new Set([...selectedTransfers]).add(id)
-      );
+  useEffect(() => {
+    setOptionsList(transferOptions);
+    setSelected(optionsList.map((item) => item.key));
+  
+  }, [optionsList]);
+
+  const handleSelectAll = () => {
+    setIsCheckAll(!isCheckAll);
+    setSelected(optionsList.map((item) => item.key));
+    if (isCheckAll) {
+      setSelected([]);
     }
   };
 
-  
+  const handleFilterToggled = (id, checked) => {
+    setSelected([...selected, id]);
+
+    if (!checked) {
+      setSelected(selected.filter((key) => key !== id));
+      setIsCheckAll(false);
+      setSelected(selected.filter((item) => item!=='all' && item!==id));
+    }
+  };
+
+  console.log(selected);
+  console.log(isCheckAll)
+
+  const filterOptions = optionsList.map(({ name, key }) => {
+    return (
+      <Checkbox
+        key={key}
+        id={key}
+        label={name}
+        checked={selected.includes(key)}
+        handleCheckboxChange={
+          key === 'all' ? handleSelectAll : handleFilterToggled
+        }
+      />
+    );
+  });
+
   return (
     <div className={classes.filter}>
       <p className={classes.title}>Количество пересадок</p>
-
-      {transferOptions.map(({ name, key }) => (
-        <Checkbox
-          checked={selectedTransfers.has(key)}
-          handleCheckboxChange={handleFilterToggled}
-          label={name}
-          id={key}
-          key={key}
-        />
-      ))}
+      {filterOptions}
     </div>
   );
 };
