@@ -1,0 +1,31 @@
+.hiddenCheckbox {
+  // Hidden visually but can  still be read by screenreaders
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.checkbox {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.checkboxActive {
+  path {
+    fill: #2196f3;
+  }
+  rect {
+    fill: #f1fcff;
+    stroke: #2196f3;
+  }
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+}
