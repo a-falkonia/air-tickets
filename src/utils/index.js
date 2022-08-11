@@ -6,6 +6,10 @@ export const getFormattedDestination = (iata, name) => {
   return `${name}, ${iata}`;
 };
 
+const capitalize = (s) => {
+  return s[0].toUpperCase() + s.slice(1);
+}
+
 export const getFormattedDate = (date) => {
   // parsing data from dd.mm.yyyy format to new Date
   const parts = date.split('.');
@@ -23,8 +27,9 @@ export const getFormattedDate = (date) => {
   const weekday = d.toLocaleDateString('ru-ru', {
     weekday: 'short',
   });
+  
   //combining formatted parts
-  const formatted = `${dayMonth} ${year}, ${weekday}`;
+  const formatted = `${dayMonth} ${year}, ${capitalize(weekday)}`;
   return formatted;
 };
 

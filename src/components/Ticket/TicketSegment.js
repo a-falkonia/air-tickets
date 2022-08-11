@@ -1,5 +1,6 @@
 import classes from './TicketSegment.module.scss';
-import TicketRoutePoint from './TicketRoutePoint';
+import airplane from '../../assets/airplane.svg';
+
 import {
   getFormattedDestination,
   getFormattedOrigin,
@@ -16,22 +17,31 @@ const TicketSegment = ({ segment }) => {
 
   return (
     <div className={classes.content}>
-      <div className={classes.origin}>
-        <TicketRoutePoint
-          name={origin}
-          time={segment.departure_time}
-          date={getFormattedDate(segment.departure_date)}
-        />
+      <div className={classes.rowWrapper}>
+        <div className={classes.time}>{segment.departure_time}</div>
+        <div className={classes.transfersWrapper}>
+          <div className={classes.transfers}>
+            {transfersFormatter(segment.stops)}
+          </div>
+          <div className={classes.imgWrap}>
+            <img
+              src={airplane}
+              alt={'airplane'}
+              className={classes.airplane}
+            ></img>
+          </div>
+        </div>
+        <div className={classes.time}>{segment.arrival_time}</div>
       </div>
-      <div className={classes.transfers}>
-        {transfersFormatter(segment.stops)}
-      </div>
-      <div className={classes.destination}>
-        <TicketRoutePoint
-          name={destination}
-          time={segment.arrival_time}
-          date={getFormattedDate(segment.arrival_date)}
-        />
+      <div className={classes.rowWrapper}>
+        <div className={classes.alignLeft}>
+          <div className={classes.airportName}>{origin}</div>
+          <div>{getFormattedDate(segment.departure_date)}</div>
+        </div>
+        <div className={classes.alignRight}>
+          <div className={classes.airportName}>{destination}</div>
+          <div>{getFormattedDate(segment.arrival_date)}</div>
+        </div>
       </div>
     </div>
   );
