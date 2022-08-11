@@ -1,24 +1,25 @@
-import Card from '../UI/Card';
 import classes from './Ticket.module.scss';
-import BuyButton from '../UI/BuyButton';
-import TicketCarrierLogo from './TicketCarrierLogo';
+import Card from '../UI/Card';
+import Button from '../UI/AccentButton'
+import Carrier from './Carrier';
 import TicketContent from './TicketContent';
 
-const Ticket = (props) => {
-  const buyText = `Купить за ${props.data.price} ₽`
+import { getIATALogoUrl, getFormattedPrice } from '../../utils/displayTicket';
+
+const Ticket = ({ ticket, currency }) => {
 
   return (
-    <li>
-      <Card>
-        <div className={classes.ticket}>
-          <div className={classes.sideblock}>
-            <TicketCarrierLogo carriers={props.data.carrier} />
-            <BuyButton price={props.data.price} text = {buyText} />
-          </div>
-          <TicketContent data={props.data} />
+    <Card>
+      <div className={classes.ticket}>
+        <div className={classes.sideblock}>
+          <Carrier>
+            <img src={getIATALogoUrl(ticket.carrier)} alt={ticket.carrier} />
+          </Carrier>
+          <Button>Купить <br/> за {getFormattedPrice(ticket.price, currency)}</Button>
         </div>
-      </Card>
-    </li>
+        <TicketContent data={ticket} />
+      </div>
+    </Card>
   );
 };
 

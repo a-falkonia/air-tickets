@@ -6,8 +6,8 @@ import filterTickets from './utils/filterTickets';
 import TicketsList from './components/TicketsList';
 import Layout from './components/Layout/Layout';
 import Card from './components/UI/Card';
-import CurrencyWidget from './components/Filters/CurrencyWidget';
-import TransfersWidget from './components/Filters/TransfersWidget';
+import CurrencyToggle from './components/Filters/CurrencyToggle';
+import TransfersCountFilter from './components/Filters/TransfersCountFilter';
 
 import ticketData from './api/tickets.json';
 import filtersData from './api/filters.json';
@@ -18,6 +18,7 @@ const App = () => {
   const [tickets, setTickets] = useState([]);
   const [filteredTickets, setFilteredTickets] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState();
+  const [currency, setCurrency] = useState({ locale: 'ru-RU', label: 'RUB' });
 
   useEffect(() => {
     // "Loading" the tickets data
@@ -42,14 +43,22 @@ const App = () => {
     setSelectedFilters(selected);
   };
 
+  const currencyHandler = (selected) => {
+    setCurrency(selected);
+    console.log(selected);
+  };
+
   return (
     <main>
       <Layout>
         <Card>
-          <CurrencyWidget />
-          <TransfersWidget options={filters} onFiltersChanged={filterHandler} />
+          <CurrencyToggle onCurrencyChange={currencyHandler} />
+          <TransfersCountFilter
+            options={filters}
+            onFiltersChanged={filterHandler}
+          />
         </Card>
-        <TicketsList items={filteredTickets} />
+        <TicketsList tickets={filteredTickets} currency={currency} />
       </Layout>
     </main>
   );

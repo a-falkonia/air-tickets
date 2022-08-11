@@ -3,7 +3,7 @@ import classes from './NoTicketFound.module.scss';
 
 const NoTicketFound = (props) => {
   return (
-    <li>
+
       <Card>
         <div className={classes.noTicketFound}>
           <span className={classes.emoji} role='img' aria-label='sad emoji'>
@@ -15,7 +15,7 @@ const NoTicketFound = (props) => {
           </p>
         </div>
       </Card>
-    </li>
+    
   );
 };
 

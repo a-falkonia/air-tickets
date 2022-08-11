@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Checkbox from '../UI/Checkbox';
-import classes from './TransfersWidget.module.scss';
+import classes from './TransfersCountFilter.module.scss';
 
 const TransfersWidget = (props) => {
   const options = props.options;

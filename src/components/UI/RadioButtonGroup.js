@@ -12,7 +12,7 @@ const RadioButtongroup = (props) => {
 
   return (
     <div className={classes.btnGroup}>
-      {options.map(({ label }) => (
+      {options.map((label) => (
         <button
           id={label}
           key={label}

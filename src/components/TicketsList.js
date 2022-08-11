@@ -2,15 +2,20 @@ import NoTicketFound from './Ticket/NoTicketFound';
 import Ticket from './Ticket/Ticket';
 import './TicketsList.module.scss';
 
-const TicketsList = (props) => {
-  const tickets = props.items;
+const TicketsList = ({tickets, currency}) => {
 
   return (
     <ul>
       {tickets.length === 0 ? (
-        <NoTicketFound />
+        <li>
+          <NoTicketFound />
+        </li>
       ) : (
-        tickets.map((ticket) => <Ticket data={ticket} />)
+        tickets.map((ticket) => (
+          <li>
+            <Ticket ticket={ticket} currency={currency}/>
+          </li>
+        ))
       )}
     </ul>
   );
