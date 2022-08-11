@@ -3,14 +3,17 @@ import { v4 as uuidv4 } from 'uuid';
 
 import filterTickets from './utils/filter';
 
-import TicketsList from './components/TicketsList';
+import Header from './components/Layout/Header';
 import Layout from './components/Layout/Layout';
+
 import Card from './components/UI/Card';
+import TicketsList from './components/TicketsList';
 import CurrencyToggle from './components/Filters/CurrencyToggle';
 import TransfersCountFilter from './components/Filters/TransfersCountFilter';
 
 import ticketData from './api/tickets.json';
 import filtersData from './api/filters.json';
+import Logo from './components/UI/Logo';
 
 const App = () => {
   const filters = filtersData.filters[0].options; //Needs reworking, filters must not be hardcoded
@@ -50,6 +53,11 @@ const App = () => {
 
   return (
     <main>
+      <Header>
+        <a href='/'>
+          <Logo/>
+        </a>
+      </Header>
       <Layout>
         <Card>
           <CurrencyToggle onCurrencyChange={currencyHandler} />

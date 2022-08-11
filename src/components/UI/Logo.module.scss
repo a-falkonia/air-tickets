@@ -1,0 +1,18 @@
+.logoBackground {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  background-size: contain;
+  background: url('../../assets/logoBackground.svg') no-repeat center center;
+}
+
+.logoAirplane {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  background-size: contain;
+  display: inline-block;
+  background: url('../../assets/logoAirplane.svg') no-repeat center center;
+}
