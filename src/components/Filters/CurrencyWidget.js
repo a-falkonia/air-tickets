@@ -1,29 +1,25 @@
+import RadioButtongroup from '../UI/RadioButtonGroup';
 import classes from './CurrencyWidget.module.scss';
+const currencyOptions = [
+  { label: 'RUB', symbol: '₽' },
+  { label: 'USD', symbol: '$' },
+  { label: 'EUR', symbol: '€' },
+];
+
 const CurrencyWidget = (props) => {
-  const currencyOptions = [
-    { id: 0, label: 'RUB' },
-    { id: 1, label: 'USD' },
-    { id: 2, label: 'EUR' },
-    ];
+  
+  const handleCurrencyChange = (currency) => {
+    console.log(currency)
+  }
+
   return (
     <div className={classes.wrapper}>
       <p className={classes.title}>Валюта</p>
-      <div className={classes.btnGroup}>
-        {currencyOptions.map(({ id, label }) => (
-          <button
-            key={id}
-            type='button'
-            onClick={() => {}}
-            className={
-              label === 'RUB'
-                ? `${classes.btn} + ${classes.btnActive}`
-                : classes.btn
-            }
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      <RadioButtongroup
+        onChange={handleCurrencyChange}
+        values={currencyOptions}
+        selected={'RUB'}
+      />
     </div>
   );
 };
