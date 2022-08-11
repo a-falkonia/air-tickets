@@ -1,13 +1,19 @@
-import Ticket from "./Ticket/Ticket"
-import './TicketsList.module.scss'
-
+import NoTicketFound from './Ticket/NoTicketFound';
+import Ticket from './Ticket/Ticket';
+import './TicketsList.module.scss';
 
 const TicketsList = (props) => {
-    return (
-        <ul>
-            {props.items.map(item => <Ticket key={item.id} data={item} />)}
-        </ul>
-    )
-}
+  const tickets = props.items;
 
-export default TicketsList
+  return (
+    <ul>
+      {tickets.length === 0 ? (
+        <NoTicketFound />
+      ) : (
+        tickets.map((ticket) => <Ticket data={ticket} />)
+      )}
+    </ul>
+  );
+};
+
+export default TicketsList;
