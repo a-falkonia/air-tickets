@@ -1,0 +1,11 @@
+.sideblock {
+  min-width: 232px;
+  max-width: 640px;
+  width: 100%;
+  margin-bottom: 20px;
+
+  @media (min-width: 870px) {
+    width: auto;
+    margin-right: 20px;
+  }
+}

@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0 20px;
+
+  @media (min-width: 870px) {
+    flex-direction: row;
+    align-items: flex-start; 
+  }
+}

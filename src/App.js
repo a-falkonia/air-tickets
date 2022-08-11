@@ -4,7 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 import filterTickets from './utils/filter';
 
 import Header from './components/Layout/Header';
-import Layout from './components/Layout/Layout';
+import Main from './components/Layout/Main';
+import Sideblock from './components/Layout/Sideblock';
+import Content from './components/Layout/Content'
 
 import Card from './components/UI/Card';
 import TicketsList from './components/TicketsList';
@@ -52,23 +54,27 @@ const App = () => {
   };
 
   return (
-    <main>
+    <>
       <Header>
         <a href='/'>
-          <Logo/>
+          <Logo />
         </a>
       </Header>
-      <Layout>
-        <Card>
-          <CurrencyToggle onCurrencyChange={currencyHandler} />
-          <TransfersCountFilter
-            options={filters}
-            onFiltersChanged={filterHandler}
-          />
-        </Card>
-        <TicketsList tickets={filteredTickets} currency={currency} />
-      </Layout>
-    </main>
+      <Main>
+        <Sideblock>
+          <Card>
+            <CurrencyToggle onCurrencyChange={currencyHandler} />
+            <TransfersCountFilter
+              options={filters}
+              onFiltersChanged={filterHandler}
+            />
+          </Card>
+        </Sideblock>
+        <Content>
+          <TicketsList tickets={filteredTickets} currency={currency} />
+        </Content>
+      </Main>
+    </>
   );
 };
 
