@@ -2,9 +2,9 @@ import classes from './Ticket.module.scss';
 import Card from '../UI/Card';
 import Button from '../UI/AccentButton'
 import Carrier from './Carrier';
-import TicketContent from './TicketContent';
+import TicketSegment from './TicketSegment';
 
-import { getIATALogoUrl, getFormattedPrice } from '../../utils/displayTicket';
+import { getIATALogoUrl, getFormattedPrice } from '../../utils/ticket';
 
 const Ticket = ({ ticket, currency }) => {
 
@@ -17,7 +17,7 @@ const Ticket = ({ ticket, currency }) => {
           </Carrier>
           <Button>Купить <br/> за {getFormattedPrice(ticket.price, currency)}</Button>
         </div>
-        <TicketContent data={ticket} />
+        <TicketSegment segment={ticket} />
       </div>
     </Card>
   );

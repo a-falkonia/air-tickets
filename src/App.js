@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import filterTickets from './utils/filterTickets';
+import filterTickets from './utils/filter';
 
 import TicketsList from './components/TicketsList';
 import Layout from './components/Layout/Layout';
