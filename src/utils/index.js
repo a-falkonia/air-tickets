@@ -27,3 +27,31 @@ export const getFormattedDate = (date) => {
   const formatted = `${dayMonth} ${year}, ${weekday}`;
   return formatted;
 };
+
+const createCountFormatter = (one, two, few) => {
+  const titles = [one, two, few];
+
+  return (n) => {
+    const cases = [2, 0, 1, 1, 1, 2];
+
+    return titles[
+      n % 100 > 4 && n % 100 < 20 ? 2 : cases[n % 10 < 5 ? n % 10 : 5]
+    ];
+  };
+};
+const transfersCountFormatter = createCountFormatter(
+  'пересадка',
+  'пересадки',
+  'пересадок'
+);
+
+export const transfersFormatter = (n) => {
+  switch (n) {
+    case 0: {
+      return `Без ${transfersCountFormatter(n)}`;
+    }
+    default: {
+      return `${n} ${transfersCountFormatter(n)}`;
+    }
+  }
+};
