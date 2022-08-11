@@ -7,6 +7,10 @@ const Checkbox = (props) => {
     props.handleCheckboxChange(props.id, !checked);
   };
 
+  const clickBtn = () => {
+    props.handleButtonClick(props.id);
+  }
+
   return (
     <label className={classes.checkboxLabel}>
       <input
@@ -39,7 +43,10 @@ const Checkbox = (props) => {
           fill='none'
         />
       </svg>
-      {props.label}
+      <div className={classes.label}>{props.label}</div>
+      <button className={classes.btnOnly} onClick={clickBtn}>
+        только
+      </button>
     </label>
   );
 };
