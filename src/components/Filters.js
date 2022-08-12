@@ -70,7 +70,7 @@ const TransfersWidget = (props) => {
         key={key}
         id={key}
         label={name}
-        checked={selected.includes(key)}
+        checked={selected.indexOf(key) !== -1}
         handleCheckboxChange={
           key === 'all' ? handleSelectAll : handleSelectToggled
         }

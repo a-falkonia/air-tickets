@@ -1,5 +1,7 @@
 const filterTickets = (tickets, filters) => {
-  const filtered = tickets.filter((ticket) => filters.includes(ticket.stops));
+  const filtered = tickets.filter(
+    (ticket) => filters.indexOf(ticket.stops) !== -1
+  );
   return filtered;
 };
 
