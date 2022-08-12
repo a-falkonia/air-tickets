@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .checkboxLabel {
   padding: 8px 15px;
   display: flex;
@@ -6,6 +8,7 @@
 
   .label {
     flex: 1;
+    letter-spacing: normal;
   }
 }
 
@@ -26,11 +29,11 @@
 
 .checkboxActive {
   path {
-    fill: #2196f3;
+    fill: $blue;
   }
   rect {
-    fill: #f1fcff;
-    stroke: #2196f3;
+    fill: $blue-background;
+    stroke: $blue;
   }
 }
 .btnOnly {
@@ -38,9 +41,9 @@
   font-family: 'Inter';
   font-weight: 700;
   font-size: 0.6rem;
-  text-transform: uppercase;
   letter-spacing: 0.4px;
-  color: #2196f3;
+  text-transform: uppercase;
+  color: $blue;
   background-color: transparent;
   border: none;
   outline: none;

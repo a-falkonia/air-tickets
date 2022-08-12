@@ -1,0 +1,12 @@
+@import './reset';
+@import './colors.scss';
+@import '@fontsource/inter';
+
+
+html,
+body {
+  background-color: $blue-background;
+  font-family: 'Inter', sans-serif;
+  color: $text;
+  letter-spacing: 0.4px;
+}

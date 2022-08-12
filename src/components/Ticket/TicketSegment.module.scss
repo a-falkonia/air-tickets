@@ -1,14 +1,19 @@
+@import '../../styles/colors.scss';
+
 .content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 2.5rem 1.5rem;
 }
 
 .rowWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &:not(:first-child) {
+    padding-bottom: 1.5rem;
+  }
 }
 
 .time {
@@ -25,14 +30,14 @@
 }
 
 .transfers {
-  padding: 0 0 5px 0;
+  padding: 0 0 7px 0;
   margin: 0 0 8px 0;
   width: 110px;
   text-transform: uppercase;
   text-align: center;
   font-weight: 700;
-  color: #c1c1c1;
-  border-bottom: 1px solid #cccccc;
+  color: $gray;
+  border-bottom: 1px solid $gray;
 }
 
 .imgWrap {
@@ -48,16 +53,17 @@
 }
 .alignLeft {
   font-size: 0.85rem;
-  color: #c1c1c1;
+  color: $gray;
   text-align: left;
 }
 .alignRight {
-  color: #c1c1c1;
+  font-size: 0.85rem;
+  color: $gray;
   text-align: right;
 }
 .airportName {
   padding: 5px 0;
   font-weight: 700;
   font-size: 0.9rem;
-  color: #626262;
+  color: $text;
 }

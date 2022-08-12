@@ -1,13 +1,11 @@
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
+
 html,
 body {
   margin: 0;
   padding: 0;
-  background-color: #f3f7fa;
-  font-family: 'Inter', sans-serif;
-  color: #626262;
 }
 
 p {
