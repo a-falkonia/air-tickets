@@ -12,8 +12,8 @@ const TicketsList = ({tickets, currency}) => {
         </li>
       ) : (
         tickets.map((ticket) => (
-          <li>
-            <Ticket ticket={ticket} currency={currency}/>
+          <li key={ticket.id}>
+            <Ticket ticket={ticket} currency={currency} />
           </li>
         ))
       )}

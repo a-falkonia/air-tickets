@@ -1,13 +1,28 @@
 import { useEffect, useState } from 'react';
-import Checkbox from '../UI/Checkbox';
-import classes from './TransfersCountFilter.module.scss';
+import Checkbox from './UI/Checkbox';
+import classes from './Filters.module.scss';
+
+import filtersData from '../api/filters.json';
 
 const TransfersWidget = (props) => {
-  const options = props.options;
-  const selectedKeys = options.map((item) => item.key);
-
+  // const selectedKeys = options.map((item) => item.key);
+  const [filters, setFilters] = useState([]);
   const [isCheckAll, setIsCheckAll] = useState(true);
-  const [selected, setSelected] = useState(selectedKeys);
+  const [selected, setSelected] = useState([]);
+
+  useEffect(() => {
+    // "Fetching" filters
+    const data = filtersData.filters;
+    let options = [];
+
+    // Adding options of each filter to filters array
+    data.forEach((filter) => {
+      options = [...options, ...filter.options];
+    });
+    setFilters(options);
+    // Selecting all filteres by default
+    setSelected(options.map((item) => item.key));
+  }, []);
 
   useEffect(() => {
     props.onFiltersChanged(selected);
@@ -18,7 +33,7 @@ const TransfersWidget = (props) => {
 
     if (!isCheckAll) {
       // if 'all' was not checked, adding all options to selected
-      setSelected(options.map((item) => item.key));
+      setSelected(filters.map((item) => item.key));
     } else {
       // otherwise reset selected
       setSelected([]);
@@ -49,7 +64,7 @@ const TransfersWidget = (props) => {
     }
   };
 
-  const filterOptions = options.map(({ name, key }) => {
+  const filterOptions = filters.map(({ name, key }) => {
     return (
       <Checkbox
         key={key}

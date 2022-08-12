@@ -1,5 +1,5 @@
-import RadioButtongroup from '../UI/RadioButtonGroup';
-import classes from './CurrencyToggle.module.scss';
+import RadioButtongroup from './UI/RadioButtonGroup';
+import classes from './CurrencySwitcher.module.scss';
 const currencyOptions = [
   { locale: 'ru-RU', label: 'RUB' },
   { locale: 'en-US', label: 'USD' },
