@@ -34,9 +34,7 @@ const App = () => {
   useEffect(() => {
     if (selectedFilters) {
       //when filters are loaded and|or changed
-      console.log('selected filters:', selectedFilters);
       //filter and update tickets
-      console.log(filterTickets(tickets, selectedFilters));
       setFilteredTickets(filterTickets(tickets, selectedFilters));
     }
   }, [selectedFilters, tickets]);
@@ -47,7 +45,6 @@ const App = () => {
 
   const currencyHandler = (selected) => {
     setCurrency(selected);
-    console.log(selected);
   };
 
   return (
