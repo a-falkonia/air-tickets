@@ -6,7 +6,7 @@ View deployed: https://a-falkonia.github.io/air-tickets/
 ### Technologies used
 
 - JS, React
-- SCSS Modules
+- SCSS, CSS Modules
 
 ## Available scripts
 `npm start`
