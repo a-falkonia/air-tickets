@@ -10,6 +10,7 @@ import Sideblock from './components/Layout/Sideblock';
 import Content from './components/Layout/Content';
 
 import Card from './components/UI/Card';
+import Loader from './components/UI/Loader';
 import TicketsList from './components/TicketsList';
 import NoTicketFound from './components/Ticket/NoTicketFound';
 import CurrencySwitcher from './components/CurrencySwitcher';
@@ -28,6 +29,7 @@ const App = () => {
       ...ticket,
       id: uuidv4(),
     }));
+
     setTickets(data);
     // Setting filtered tickets to all tickets by default
     setFilteredTickets(data);
@@ -59,10 +61,13 @@ const App = () => {
           </Card>
         </Sideblock>
         <Content>
-          {filteredTickets.length > 0 && (
+          {tickets.length > 0 && filteredTickets.length > 0 && (
             <TicketsList tickets={filteredTickets} currency={currency} />
           )}
-          {filteredTickets.length === 0 && <NoTicketFound />}
+          {tickets.length > 0 && filteredTickets.length === 0 && (
+            <NoTicketFound />
+          )}
+          {tickets.length === 0 && <Loader />}
         </Content>
       </Main>
     </>
