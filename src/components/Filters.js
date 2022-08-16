@@ -4,7 +4,7 @@ import classes from './Filters.module.scss';
 
 import filtersData from '../api/filters.json';
 
-const TransfersWidget = (props) => {
+const Filters = (props) => {
   // const selectedKeys = options.map((item) => item.key);
   const [filters, setFilters] = useState([]);
   const [isCheckAll, setIsCheckAll] = useState(true);
@@ -79,6 +79,7 @@ const TransfersWidget = (props) => {
     );
   });
 
+  console.log("FILTERES RERENDERED")
   return (
     <div className={classes.filter}>
       <p className={classes.title}>Количество пересадок</p>
@@ -87,4 +88,4 @@ const TransfersWidget = (props) => {
   );
 };
 
-export default TransfersWidget;
+export default Filters;
