@@ -11,6 +11,7 @@ import Content from './components/Layout/Content';
 
 import Card from './components/UI/Card';
 import TicketsList from './components/TicketsList';
+import NoTicketFound from './components/Ticket/NoTicketFound';
 import CurrencySwitcher from './components/CurrencySwitcher';
 import Filters from './components/Filters';
 
@@ -62,7 +63,10 @@ const App = () => {
           </Card>
         </Sideblock>
         <Content>
-          <TicketsList tickets={filteredTickets} currency={currency} />
+          {filteredTickets.length > 0 && (
+            <TicketsList tickets={filteredTickets} currency={currency} />
+          )}
+          {filteredTickets.length === 0 && <NoTicketFound />}
         </Content>
       </Main>
     </>
