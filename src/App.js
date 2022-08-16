@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import filterTickets from './utils/filter';
@@ -20,7 +20,6 @@ import ticketData from './api/tickets.json';
 const App = () => {
   const [tickets, setTickets] = useState([]);
   const [filteredTickets, setFilteredTickets] = useState([]);
-  const [selectedFilters, setSelectedFilters] = useState();
   const [currency, setCurrency] = useState({ locale: 'ru-RU', label: 'RUB' });
 
   useEffect(() => {
@@ -30,23 +29,20 @@ const App = () => {
       id: uuidv4(),
     }));
     setTickets(data);
+    // Setting filtered tickets to all tickets by default
+    setFilteredTickets(data);
   }, []);
 
-  useEffect(() => {
-    if (selectedFilters) {
-      //when filters are loaded and|or changed
-      //filter and update tickets
-      setFilteredTickets(filterTickets(tickets, selectedFilters));
-    }
-  }, [selectedFilters, tickets]);
+  const filterHandler = useCallback(
+    (selected) => {
+      setFilteredTickets(filterTickets(tickets, selected));
+    },
+    [tickets]
+  );
 
-  const filterHandler = (selected) => {
-    setSelectedFilters(selected);
-  };
-
-  const currencyHandler = (selected) => {
+  const currencyHandler = useCallback((selected) => {
     setCurrency(selected);
-  };
+  }, []);
 
   return (
     <>

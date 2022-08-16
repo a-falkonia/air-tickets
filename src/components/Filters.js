@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkbox from './UI/Checkbox';
 import classes from './Filters.module.scss';
 
@@ -79,7 +79,6 @@ const Filters = (props) => {
     );
   });
 
-  console.log("FILTERES RERENDERED")
   return (
     <div className={classes.filter}>
       <p className={classes.title}>Количество пересадок</p>
@@ -88,4 +87,4 @@ const Filters = (props) => {
   );
 };
 
-export default Filters;
+export default React.memo(Filters);

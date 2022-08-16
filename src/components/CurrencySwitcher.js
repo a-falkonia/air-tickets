@@ -1,3 +1,4 @@
+import React from 'react';
 import RadioButtongroup from './UI/RadioButtonGroup';
 import classes from './CurrencySwitcher.module.scss';
 const currencyOptions = [
@@ -18,7 +19,6 @@ const CurrencyWidget = (props) => {
 
   //Passing currency labels to RadioButtonGroup
   const labels = currencyOptions.map((item) => item.label);
-
   return (
     <div className={classes.wrapper}>
       <p className={classes.title}>Валюта</p>
@@ -31,4 +31,4 @@ const CurrencyWidget = (props) => {
   );
 };
 
-export default CurrencyWidget;
+export default React.memo(CurrencyWidget);
