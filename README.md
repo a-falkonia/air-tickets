@@ -20,9 +20,9 @@ Builds the app for production to the `build` folder.
 
 ## Roadmap
 
-- [ ] Add TicketList loader
-- [ ] Add Filters loader
+- [x] Add TicketList loader
 - [ ] Migrate to TypeScript
+- [ ] Add tests
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
