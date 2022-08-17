@@ -19,6 +19,7 @@ const CurrencyWidget = (props) => {
 
   //Passing currency labels to RadioButtonGroup
   const labels = currencyOptions.map((item) => item.label);
+
   return (
     <div className={classes.wrapper}>
       <p className={classes.title}>Валюта</p>
