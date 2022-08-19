@@ -5,8 +5,8 @@ import classes from './Filters.module.scss';
 import filtersData from '../api/filters.json';
 
 const Filters = (props) => {
-  // const selectedKeys = options.map((item) => item.key);
   const [filters, setFilters] = useState([]);
+  const [filtersAmount, setFiltersAmount] = useState(0);
   const [isCheckAll, setIsCheckAll] = useState(true);
   const [selected, setSelected] = useState([]);
 
@@ -20,6 +20,7 @@ const Filters = (props) => {
       options = [...options, ...filter.options];
     });
     setFilters(options);
+    setFiltersAmount(options.length);
     // Selecting all filteres by default
     setSelected(options.map((item) => item.key));
   }, []);
@@ -42,13 +43,20 @@ const Filters = (props) => {
 
   const handleSelectToggled = (id, checked) => {
     // if checking, adding id to selected filters
-    setSelected([...selected, id]);
 
     if (!checked) {
       // if unchecking, removing id and 'all' from selected filters
       setIsCheckAll(false);
       setSelected(selected.filter((item) => item !== 'all' && item !== id));
-    }
+
+    } else if (checked && selected.length + 2 === filtersAmount) {
+      // if checking and all filters from id and 'all' are selected, check id and all
+      setIsCheckAll(true);
+      setSelected([...selected, id, 'all']);
+    } else if (checked) {
+      // if checking, adding id to selected filters
+      setSelected([...selected, id]);
+    } 
   };
 
   const handleSelectOnly = (id) => {
@@ -64,6 +72,7 @@ const Filters = (props) => {
     }
   };
 
+  console.log('filters rerendered');
   const filterOptions = filters.map(({ name, key }) => {
     return (
       <Checkbox
