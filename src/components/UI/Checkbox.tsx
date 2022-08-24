@@ -2,10 +2,10 @@ import classes from './Checkbox.module.scss';
 
 interface CheckboxProps {
   checked: boolean;
-  id: string;
+  id: number;
   label: string;
-  handleCheckboxChange: (id: string, checked: boolean) => void;
-  handleButtonClick: (id: string) => void;
+  handleCheckboxChange: (id: number, checked: boolean) => void;
+  handleButtonClick: (id: number) => void;
 }
 const Checkbox = ({
   checked,

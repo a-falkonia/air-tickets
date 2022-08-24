@@ -1,5 +1,6 @@
 import classes from './TicketSegment.module.scss';
 import airplane from '../../assets/airplane.svg';
+import { Ticket } from '../../types/';
 
 import {
   getFormattedDestination,
@@ -8,7 +9,11 @@ import {
   transfersFormatter,
 } from '../../utils';
 
-const TicketSegment = ({ segment }) => {
+interface TicketSegmentProps {
+  segment: Ticket;
+}
+
+const TicketSegment = ({ segment }: TicketSegmentProps) => {
   const origin = getFormattedOrigin(segment.origin, segment.origin_name);
   const destination = getFormattedDestination(
     segment.destination,

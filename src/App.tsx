@@ -17,10 +17,11 @@ import CurrencySwitcher from './components/CurrencySwitcher';
 import Filters from './components/Filters';
 
 import ticketData from './api/tickets.json';
+import { Currency, Ticket } from './types';
 
 const App = () => {
-  const [tickets, setTickets] = useState([]);
-  const [filteredTickets, setFilteredTickets] = useState([]);
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([]);
   const [currency, setCurrency] = useState({ locale: 'ru-RU', label: 'RUB' });
 
   useEffect(() => {
@@ -36,13 +37,13 @@ const App = () => {
   }, []);
 
   const filterHandler = useCallback(
-    (selected) => {
+    (selected: number[]) => {
       setFilteredTickets(filterTickets(tickets, selected));
     },
     [tickets]
   );
 
-  const currencyHandler = useCallback((selected) => {
+  const currencyHandler = useCallback((selected: Currency) => {
     setCurrency(selected);
   }, []);
 

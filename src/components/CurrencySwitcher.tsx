@@ -1,20 +1,25 @@
 import React from 'react';
 import RadioButtongroup from './UI/RadioButtonGroup';
 import classes from './CurrencySwitcher.module.scss';
+import { Currency } from '../types';
 const currencyOptions = [
   { locale: 'ru-RU', label: 'RUB' },
   { locale: 'en-US', label: 'USD' },
   { locale: 'de-DE', label: 'EUR' },
 ];
 
-const CurrencyWidget = (props) => {
-  const handleCurrencyChange = (currency) => {
+interface currencyWidgetProps {
+  onCurrencyChange: (selected: Currency) => void;
+}
+
+const CurrencyWidget = ({ onCurrencyChange }: currencyWidgetProps) => {
+  const handleCurrencyChange = (currencyLabel: string) => {
     // finding currency with selected label
     const [selected] = currencyOptions.filter(
-      (item) => item.label === currency
+      (item) => item.label === currencyLabel
     );
 
-    props.onCurrencyChange(selected);
+    onCurrencyChange(selected);
   };
 
   //Passing currency labels to RadioButtonGroup

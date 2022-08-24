@@ -1,13 +1,17 @@
 import classes from './Ticket.module.scss';
 import Card from '../UI/Card';
-import Button from '../UI/AccentButton'
+import Button from '../UI/AccentButton';
 import Carrier from './Carrier';
 import TicketSegment from './TicketSegment';
+import { Currency, Ticket } from '../../types/';
 
 import { getIATALogoUrl, getFormattedPrice } from '../../utils/ticket';
 
-const Ticket = ({ ticket, currency }) => {
-
+interface TicketCardProps {
+  ticket: Ticket;
+  currency: Currency;
+}
+const TicketCard = ({ ticket, currency }: TicketCardProps) => {
   return (
     <Card>
       <div className={classes.ticket}>
@@ -15,7 +19,9 @@ const Ticket = ({ ticket, currency }) => {
           <Carrier>
             <img src={getIATALogoUrl(ticket.carrier)} alt={ticket.carrier} />
           </Carrier>
-          <Button>Купить <br/> за {getFormattedPrice(ticket.price, currency)}</Button>
+          <Button>
+            Купить <br /> за {getFormattedPrice(ticket.price, currency)}
+          </Button>
         </div>
         <TicketSegment segment={ticket} />
       </div>
@@ -23,4 +29,4 @@ const Ticket = ({ ticket, currency }) => {
   );
 };
 
-export default Ticket;
+export default TicketCard;

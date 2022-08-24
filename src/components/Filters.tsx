@@ -3,17 +3,22 @@ import Checkbox from './UI/Checkbox';
 import classes from './Filters.module.scss';
 
 import filtersData from '../api/filters.json';
+import { FilterOption } from '../types';
 
-const Filters = (props) => {
-  const [filters, setFilters] = useState([]);
+interface FiltersProps {
+  onFiltersChanged: (selected: number[]) => void;
+}
+
+const Filters = ({ onFiltersChanged }: FiltersProps) => {
+  const [filters, setFilters] = useState<FilterOption[]>([]);
   const [filtersAmount, setFiltersAmount] = useState(0);
   const [isCheckAll, setIsCheckAll] = useState(true);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<number[]>([]);
 
   useEffect(() => {
     // "Fetching" filters
     const data = filtersData.filters;
-    let options = [];
+    let options: FilterOption[] = [];
 
     // Adding options of each filter to filters array
     data.forEach((filter) => {
@@ -26,8 +31,8 @@ const Filters = (props) => {
   }, []);
 
   useEffect(() => {
-    props.onFiltersChanged(selected);
-  }, [props, selected]);
+    onFiltersChanged(selected);
+  }, [onFiltersChanged, selected]);
 
   const handleSelectAll = () => {
     setIsCheckAll(!isCheckAll);
@@ -41,25 +46,25 @@ const Filters = (props) => {
     }
   };
 
-  const handleSelectToggled = (id, checked) => {
+  const handleSelectToggled = (id: number, checked: boolean) => {
     // if checking, adding id to selected filters
 
     if (!checked) {
       // if unchecking, removing id and 'all' from selected filters
       setIsCheckAll(false);
-      setSelected(selected.filter((item) => item !== 'all' && item !== id));
+      setSelected(selected.filter((key) => key !== -1 && key !== id));
     } else if (checked && selected.length + 2 === filtersAmount) {
       // if checking and all filters from id and 'all' are selected, check id and all
       setIsCheckAll(true);
-      setSelected([...selected, id, 'all']);
+      setSelected([...selected, id, -1]);
     } else if (checked) {
       // if checking, adding id to selected filters
       setSelected([...selected, id]);
     }
   };
 
-  const handleSelectOnly = (id) => {
-    if (id === 'all') {
+  const handleSelectOnly = (id: number) => {
+    if (id === -1) {
       // handleSelectOnly works on 'all' only if 'all' is not selected
       if (!isCheckAll) {
         handleSelectAll();
@@ -79,7 +84,7 @@ const Filters = (props) => {
         label={name}
         checked={selected.indexOf(key) !== -1}
         handleCheckboxChange={
-          key === 'all' ? handleSelectAll : handleSelectToggled
+          key === -1 ? handleSelectAll : handleSelectToggled
         }
         handleButtonClick={handleSelectOnly}
       />
