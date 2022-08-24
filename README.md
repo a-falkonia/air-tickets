@@ -21,7 +21,7 @@ Builds the app for production to the `build` folder.
 ## Roadmap
 
 - [x] Add TicketList loader
-- [ ] Migrate to TypeScript
+- [x] Migrate to TypeScript
 - [ ] Add tests
 
 ## License
