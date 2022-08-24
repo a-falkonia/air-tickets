@@ -48,7 +48,6 @@ const Filters = (props) => {
       // if unchecking, removing id and 'all' from selected filters
       setIsCheckAll(false);
       setSelected(selected.filter((item) => item !== 'all' && item !== id));
-
     } else if (checked && selected.length + 2 === filtersAmount) {
       // if checking and all filters from id and 'all' are selected, check id and all
       setIsCheckAll(true);
@@ -56,7 +55,7 @@ const Filters = (props) => {
     } else if (checked) {
       // if checking, adding id to selected filters
       setSelected([...selected, id]);
-    } 
+    }
   };
 
   const handleSelectOnly = (id) => {
@@ -72,7 +71,6 @@ const Filters = (props) => {
     }
   };
 
-  console.log('filters rerendered');
   const filterOptions = filters.map(({ name, key }) => {
     return (
       <Checkbox
